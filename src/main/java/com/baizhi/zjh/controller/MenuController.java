@@ -13,8 +13,9 @@ import java.util.List;
 public class MenuController {
     @Autowired
     private MenuService menuService;
+
     @RequestMapping("allMenus")
-    private List<Menu> allMenus(){
-        return menuService.getAllMenus();
+    private List<Menu> allMenus(Integer parent_id) {
+        return menuService.getAllMenus(parent_id);
     }
 }

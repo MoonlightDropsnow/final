@@ -11,15 +11,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     @Autowired
     private UserService userService;
-
-    @RequestMapping("login")
-    public String login(User user) {
-        userService.login(user);
-        return "main/main";
-    }
-
-    @RequestMapping("validate")
-    public String validate() {
-        return null;
-    }
 }

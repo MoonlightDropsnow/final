@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Menu {
     @Id
     private Integer id;
-    private String title;
+    private String text;
     private String iconCls;
     private String url;
     private Integer parentId;
