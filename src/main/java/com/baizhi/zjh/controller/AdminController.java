@@ -37,6 +37,7 @@ public class AdminController {
             }
             session.setAttribute("admin",admin);
             return "main/main";
+            //
         }
     }
     @RequestMapping("quit")
