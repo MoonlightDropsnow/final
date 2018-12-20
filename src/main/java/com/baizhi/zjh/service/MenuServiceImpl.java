@@ -4,6 +4,7 @@ import com.baizhi.zjh.entity.Menu;
 import com.baizhi.zjh.mapper.MenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<Menu> getAllMenus(Integer parent_id) {
         Menu menu = new Menu();
         if(parent_id==null)parent_id=0;

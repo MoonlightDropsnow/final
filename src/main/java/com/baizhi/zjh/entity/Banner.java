@@ -2,7 +2,9 @@ package com.baizhi.zjh.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
@@ -12,22 +14,15 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "banner")
+public class Banner implements Serializable {
     @Id
     private Integer id;
-    private String phone;
-    private String password;
-    private String salt;
-    private String sign;
-    private String head_pic;
-    private String name;
-    private String dharma;
-    private Integer sex;
-    private String province;
-    private String city;
+    private String title;
+    private String imgPath;
     private Integer status;
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date regDate;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date pubDate;
+    private String description;
 }

@@ -5,13 +5,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>持名法州主页</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/IconExtension.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/datagrid-detailview.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.edatagrid.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
+            //添加
+            $("#addBannerDialog").dialog({
+                title: '添加轮播图',
+                width: 400,
+                height: 260,
+                closed: true,
+                cache: false,
+                href: '${pageContext.request.contextPath}/view/addBanner.jsp',
+                modal: true
+            });
             //退出
             $.ajax({
                 url: "${pageContext.request.contextPath}/menu/allMenus",
@@ -23,11 +36,7 @@
                             title: val.text,
                             iconCls: val.iconCls,
                             selected: false,
-                            content: "<div><ul id='" + val.id + "'>???</ul></div>",
-                            onSelect: function (val) {
-                                console.log("???")
-
-                            }
+                            content: "<div><ul id='" + val.id + "'></ul></div>"
                         });
                         $.ajax({
                             url: "${pageContext.request.contextPath}/menu/allMenus",
@@ -35,7 +44,24 @@
                             data: "parent_id=" + val.id,
                             dataType: "json",
                             success: function (data) {
-                                $("#" + val.id).tree({data: data});
+                                $("#" + val.id).tree({
+                                    data: data,
+                                    lines:true,
+                                    onClick:function (node) {
+                                        var bn = $("#"+val.id).tree("isLeaf",node.target);
+                                        if(bn){
+                                            if($("#tabs").tabs("exists",node.text)){
+                                                $("#tabs").tabs("select",node.text);
+                                            }else{
+                                                $("#tabs").tabs("add",{
+                                                    title:node.text,
+                                                    closable:true,
+                                                    href:"${pageContext.request.contextPath}/"+node.url
+                                                });
+                                            }
+                                        }
+                                    }
+                                });
                             }
                         });
                     });
@@ -68,9 +94,11 @@
     </div>
 </div>
 <div data-options="region:'center'">
-    <div id="tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">
+    <div id="tabs" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">
         <div title="主页" data-options="iconCls:'icon-neighbourhood',"
              style="background-image:url(${pageContext.request.contextPath}/main/image/shouye.jpg);background-repeat: no-repeat;background-size:100% 100%;"></div>
+    </div>
+    <div id="addBannerDialog" align="center">
     </div>
 </div>
 </body>
