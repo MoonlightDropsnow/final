@@ -25,9 +25,14 @@
             text: "删除",
             iconCls: 'icon-remove',
             handler: function () {
-                /* $("#slideshowDatagrid").edatagrid("destroyRow");
-                */
-                //获取选中行
+               /* //获取选中行
+                var row = $("#slideshowDatagrid").edatagrid("getSelected");
+                //编辑指定行
+                var index = $("#slideshowDatagrid").edatagrid("getRowIndex", row);
+                $("#slideshowDatagrid").edatagrid("destroyRow", index);
+                $("#slideshowDatagrid").edatagrid("reload");
+*/
+               ///获取选中行
                 var row = $("#slideshowDatagrid").edatagrid("getSelected");
                 if (row != null) {
                     if (confirm("确定删除？")) {
@@ -91,8 +96,8 @@
                     '<p>日期：' + rowData.pubDate + '</p>' +
                     '</td>' +
                     '</tr></table>';
-            }
-            /* destroyUrl:"/banner/removeBanner"
+            }/*,
+            destroyUrl:"/banner/removeBanner",
             destroyMsg:{
                 norecord:{    // 在没有记录选择的时候执行
                     title:'你好',
@@ -104,6 +109,16 @@
                 }
             }*/
         });
+        //添加
+        $("#addBannerDialog").dialog({
+            title: '添加轮播图',
+            width: 400,
+            height: 260,
+            closed: true,
+            cache: false,
+            href: '${pageContext.request.contextPath}/view/addBanner.jsp',
+            modal: true
+        });
 
     })
 </script>
@@ -113,4 +128,6 @@
     <table id="slideshowDatagrid">
 
     </table>
+</div>
+<div id="addBannerDialog" align="center">
 </div>

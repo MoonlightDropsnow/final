@@ -3,7 +3,7 @@ package com.baizhi.zjh.service;
 import com.baizhi.zjh.entity.Banner;
 import com.baizhi.zjh.entity.BannerDto;
 import com.baizhi.zjh.mapper.BannerMapper;
-import org.apache.ibatis.session.RowBounds;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,8 +24,8 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public BannerDto getBannersByPage(int page, int rows) {
         BannerDto bannerDto = new BannerDto();
-        RowBounds rowBounds = new RowBounds((page-1)*rows,rows);
-        List<Banner> banners = bannerMapper.selectByRowBounds(new Banner(),rowBounds);
+        PageHelper.startPage(page,rows);
+        List<Banner> banners = bannerMapper.selectAll();
         int total = bannerMapper.selectCount(new Banner());
         bannerDto.setTotal(total);
         bannerDto.setRows(banners);

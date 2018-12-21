@@ -15,16 +15,6 @@
     <script type="text/javascript">
         <!--菜单处理-->
         $(function () {
-            //添加
-            $("#addBannerDialog").dialog({
-                title: '添加轮播图',
-                width: 400,
-                height: 260,
-                closed: true,
-                cache: false,
-                href: '${pageContext.request.contextPath}/view/addBanner.jsp',
-                modal: true
-            });
             //退出
             $.ajax({
                 url: "${pageContext.request.contextPath}/menu/allMenus",
@@ -98,8 +88,7 @@
         <div title="主页" data-options="iconCls:'icon-neighbourhood',"
              style="background-image:url(${pageContext.request.contextPath}/main/image/shouye.jpg);background-repeat: no-repeat;background-size:100% 100%;"></div>
     </div>
-    <div id="addBannerDialog" align="center">
-    </div>
+
 </div>
 </body>
 </html>
