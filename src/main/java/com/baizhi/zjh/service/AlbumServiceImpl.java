@@ -35,4 +35,14 @@ public class AlbumServiceImpl implements AlbumService{
         AlbumDto albumDto = new AlbumDto(total,albums);
         return albumDto;
     }
+
+    @Override
+    public Album getOneAlbum(Integer id) {
+        return albumMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void increaseAlbum(Album album) {
+        albumMapper.insert(album);
+    }
 }

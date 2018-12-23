@@ -19,7 +19,7 @@ public class Chapter implements Serializable {
     private String id;
     private String title;
     private Double size;
-    private Double time;
+    private String time;
     private String url;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")

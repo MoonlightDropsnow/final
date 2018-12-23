@@ -22,7 +22,7 @@ public class Album implements Serializable {
     private String coverImg;
     private String title;
     private Integer score;
-    private Guru guru;
+    private String author;
     private String announcer;
     private Integer count;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
