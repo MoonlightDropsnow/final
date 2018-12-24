@@ -21,3 +21,6 @@ spring:
       max-request-size: 100MB
 mybatis:
   type-aliases-package: com.baizhi.zjh.entity
+file:
+  real:
+    path:  E:/idea_projects/final/cmfz/src/main/webapp

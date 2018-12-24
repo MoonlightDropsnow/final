@@ -10,10 +10,14 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css"></link>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" type="text/css"></link>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/IconExtension.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/script/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
-
         $(function () {
             //点击更换验证码：
             $("#captchaImage").live("click", function () {

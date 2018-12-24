@@ -15,24 +15,20 @@ import java.util.List;
 
 @Service
 @Transactional
-public class AlbumServiceImpl implements AlbumService{
+public class AlbumServiceImpl implements AlbumService {
     @Autowired
     private AlbumMapper albumMapper;
     @Autowired
     private ChapterMapper chapterMapper;
+
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public AlbumDto getAlbums(Integer page, Integer rows) {
-        PageHelper.startPage(page,rows);
+        PageHelper.startPage(page, rows);
         List<Album> albums = albumMapper.selectAll();
-        for (Album album:albums) {
-            Chapter chapter = new Chapter();
-            chapter.setAlbumId(album.getId());
-            List<Chapter> chapters = chapterMapper.select(chapter);
-            album.setChildren(chapters);
-        }
+        albums = completeAlbums(albums);
         Integer total = albumMapper.selectCount(new Album());
-        AlbumDto albumDto = new AlbumDto(total,albums);
+        AlbumDto albumDto = new AlbumDto(total, albums);
         return albumDto;
     }
 
@@ -44,5 +40,21 @@ public class AlbumServiceImpl implements AlbumService{
     @Override
     public void increaseAlbum(Album album) {
         albumMapper.insert(album);
+    }
+
+    @Override
+    public List<Album> getAllAlbums() {
+        List<Album> albums = albumMapper.selectAll();
+        albums = completeAlbums(albums);
+        return albums;
+    }
+    public List<Album> completeAlbums(List<Album> albums){
+        for (Album album : albums) {
+            Chapter chapter = new Chapter();
+            chapter.setAlbumId(album.getId());
+            List<Chapter> chapters = chapterMapper.select(chapter);
+            album.setChildren(chapters);
+        }
+        return albums;
     }
 }

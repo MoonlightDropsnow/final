@@ -88,12 +88,18 @@
                     if (!row.albumId) {
                         alert("请选择具体章节");
                     } else {
-                        window.location.href="${pageContext.request.contextPath}/chapter/downloadChapter?chapterId=" + row.id;
+                        window.location.href = "${pageContext.request.contextPath}/chapter/downloadChapter?chapterId=" + row.id;
                     }
                 } else {
                     alert("请选中要下载的章节");
                 }
 
+            }
+        }, '-', {
+            text: "导出专辑",
+            iconCls: 'icon-redo',
+            handler: function () {
+                window.location.href = "${pageContext.request.contextPath}/album/exportAlbum";
             }
         }]
         $('#albumDatagrid').treegrid({
