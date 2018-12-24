@@ -22,6 +22,7 @@ import java.util.List;
 @Table(name = "album")
 @ExcelTarget(value = "ID")
 public class Album implements Serializable {
+    //1
     @Id
     @Excel(name = "ID",needMerge = true)
     private Integer id;
