@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.zjh.mapper.UserMapper">
+    <select id="queryAllGroupByCity" resultType="UserMsg">
+        select count(*) value,province name from user group by province
+    </select>
+    <select id="queryUserNumberByTimeInterval" resultType="Integer" parameterType="Integer">
+        <![CDATA[
+         SELECT COUNT(*) from user WHERE DATEDIFF(now(),reg_date)<#{days}
+        ]]>
+    </select>
+</mapper>
